@@ -17,8 +17,8 @@ blocks:
             - cache store $(checksum main.go) bin
       agent:
         machine:
-          type: ''
-          os_image: ''
+          type: e2-standard-2
+          os_image: ubuntu2004
   - name: Check code style
     task:
       jobs:
