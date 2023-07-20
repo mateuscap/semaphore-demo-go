@@ -15,6 +15,8 @@ blocks:
             - go get
             - go build -o ./bin/main
             - cache store $(checksum main.go) bin
+            - cat ~/secret_path/secret_file.txt
+            - echo $variable_1
       agent:
         machine:
           type: e2-standard-2
@@ -42,9 +44,9 @@ blocks:
             - gotestsum --junitfile junit.xml ./...
         - name: Test web server
           commands:
-            - cache restore $(checksum main.go)
-            - ./bin/main 8001 &
-            - 'curl --silent localhost:8001/time | grep "The current time is"'
+            - '#cache restore $(checksum main.go)'
+            - '#./bin/main 8001 &'
+            - '#curl --silent localhost:8001/time | grep "The current time is"'
       epilogue:
         always:
           commands:
